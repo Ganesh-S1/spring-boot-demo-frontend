@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     tools {
-        jdk 'JDK 21'
-        maven 'Maven 3'
+        nodejs 'Node 18'
     }
 
     stages {
@@ -11,9 +10,10 @@ pipeline {
             steps { checkout scm }
         }
 
-        stage('Build & Test') {
+        stage('Install & Build') {
             steps {
-                sh './mvnw clean verify'
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
     }
